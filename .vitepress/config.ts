@@ -3,6 +3,7 @@ import { withMermaid } from 'vitepress-plugin-mermaid'
 import MarkdownItPlantuml from 'markdown-it-plantuml'
 
 const config =  defineConfig({
+  base: '/openapi/',
   title: 'Open Api Docs',
   description: 'Leaderrun Open Api Docs',
   cleanUrls: true,
