@@ -35,6 +35,13 @@ const config =  defineConfig({
         href: '/favicon.ico'
       }
     ],
+    [
+      'script',
+      {
+        id: 'prose'
+      },
+      "window.onload = function() {\n const mainEl = document.querySelector('.main'); if (mainEl){mainEl.classList.add('prose', 'dark:prose-invert');}"
+    ]
   ],
   markdown: {
     config(md) {
