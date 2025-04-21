@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vitepress --open",
-    "build": "vitepress build",
+    "build:staging": "vitepress build",
     "serve": "vitepress serve",
     "preview": "vitepress preview",
     "clean": "rimraf ./.vitepress/cache && rimraf node_modules"
