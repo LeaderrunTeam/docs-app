@@ -5,13 +5,14 @@ import { useData, useRoute } from 'vitepress'
 
 import { data as posts } from './posts.data.js'
 
-const { frontmatter: data } = useData()
+const { frontmatter: data, page } = useData()
 
 const route = useRoute()
 
 function findCurrentIndex() {
   return posts.findIndex((p) => p.url === route.path)
 }
+
 
 
 const nextPost = computed(() => posts[findCurrentIndex() - 1])
@@ -38,7 +39,7 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
           class="text-3xl leading-9 font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
           {{ data.title }}
         </h1>
-        <Date :date="data.lastUpdated || data.date" />
+        <Date :date="page.lastUpdated || data.date" />
       </div>
 
       <div v-if="prevPost" class="py-8">

@@ -10,18 +10,19 @@ interface ApiDoc {
 
 declare const data: ApiDoc[]
 export { data }
-
-export default createContentLoader('apis/*.md', {
+export default createContentLoader('docs/*.md', {
   excerpt: true,
   transform(raw): ApiDoc[] {
+
+
     return raw
-      .map(({ url, frontmatter }) => {
+      .map((data) => {
         return {
-          title: frontmatter.title,
-          url,
-          date: frontmatter.date,
-          description: frontmatter.description,
-          sequence: frontmatter.sequence
+          title: data.frontmatter.title,
+          url: '/openapi' + data.url,
+          date: data.frontmatter.date,
+          description: data.frontmatter.description,
+          sequence: data.frontmatter.sequence
         }
       })
       .sort((a, b) => a.sequence - b.sequence)
