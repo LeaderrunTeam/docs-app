@@ -1,0 +1,25 @@
+name: Deploy Build docker image
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code 😀
+        uses: actions/checkout@main
+
+      - name: Setup node20 👀
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          always-auth: true
+
+      - name: Get Package Project Name
+        run: node -p -e '`PACKAGE_NAME=${require("./package.json").name}`' >> $GITHUB_ENV
+
+      - name: Trigger Jenkins Build
+        # SERVER_PORT：服务的端口号。MAIL：构建失败后通知的邮箱地址，不传构建失败不发送通知邮件
+        run: curl -i --max-time 60 -G -d "job=$PACKAGE_NAME&token=${{secrets.TOKEN}}&SERVER_PORT=7990&MAIL=zuan.lai@leaderrun.com" --url ${{secrets.JENKINS_URL}}

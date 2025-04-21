@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 立航项目管理
+    url: https://github.com/LeaderrunTeam/pm/issues
+    about: 请在这里创建你的需求，然后在对应的项目中去关联该需求
