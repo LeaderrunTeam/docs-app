@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
-import { computed } from 'vue';
+import { onMounted, shallowRef } from 'vue';
 const props = defineProps<{ date: string | number }>()
-
-const date = computed(() => {
-  return dayjs(props.date).format("YYYY-MM-DD")
+const date = shallowRef<string>('')
+onMounted(() => {
+  date.value = dayjs(props.date).format("YYYY-MM-DD")
 })
 
 </script>
