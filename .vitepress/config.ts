@@ -25,7 +25,7 @@ const config =  defineConfig({
   cleanUrls: true,
   lastUpdated: true,
   themeConfig: {
-    logo: "/logo.png",
+    logo: "https://logistics.leaderrun.com/static/logo/logo.png",
     siteTitle: "<span class='font-extrabold text-gray-900 dark:text-white tracking-tight'>Open Api Docs</span><div class='sub-title text-xs text-gray-500 dark:text-white'>Shenzhen Leaderrun Transportation Inc. Open Platform Document Center</div>",
     outline: {
       level: 'deep',
@@ -49,7 +49,7 @@ const config =  defineConfig({
       {
         rel: 'icon',
         type: 'image/x-icon',
-        href: '/favicon.ico'
+        href: 'https://logistics.leaderrun.com/static/logo/favicon.ico'
       }
     ],
     [
@@ -58,7 +58,7 @@ const config =  defineConfig({
         id: 'prose',
         type: "text/javascript"
       },
-      "window.onload = function() {\n const mainEl = document.querySelector('.VPContent');\n if (mainEl){\n mainEl.classList.add('prose', 'dark:prose-invert');\n}\n}"
+      "window.onload = function() {\n const mainEl = document.querySelector('#VPContent .content');\n if (mainEl){\n mainEl.classList.add('prose', 'dark:prose-invert');\n}\n}"
     ]
   ],
   markdown: {

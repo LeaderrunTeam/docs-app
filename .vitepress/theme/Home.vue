@@ -21,13 +21,13 @@ const { frontmatter } = useData()
         <article class="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
           <div class="space-y-5 xl:col-span-3">
             <div class="space-y-6">
-              <h2 class="text-2xl leading-8 font-bold tracking-tight">
-                <a class="text-gray-900 dark:text-white" :href="url">{{ title }}</a>
+              <h2 class="not-prose text-2xl leading-8 font-bold tracking-tight">
+                <a class="not-prose text-gray-900 dark:text-white" :href="url">{{ title }}</a>
               </h2>
               <div v-if="description" class="max-w-none text-gray-500 dark:text-gray-300" v-html="description"></div>
             </div>
             <div class="text-base leading-6 font-medium">
-              <a class="link" aria-label="read more" :href="url">Read more →</a>
+              <a class="not-prose link" aria-label="read more" :href="url">Read more →</a>
             </div>
           </div>
         </article>
