@@ -36,7 +36,7 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
 
       <div>
         <h1
-          class="text-3xl leading-9 font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl sm:leading-10 md:text-5xl md:leading-14">
+          class="text-2xl leading-9 font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-3xl sm:leading-10 md:text-4xl md:leading-14">
           {{ data.title }}
         </h1>
         <Date :date="page.lastUpdated || data.date" />
@@ -52,10 +52,5 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
       </div>
       <div v-else></div>
     </header>
-    <!-- <div class="pb-16 xl:pb-20">
-      <div class="divide-y divide-gray-200 dark:divide-slate-200/5 xl:pb-0 xl:col-span-3 xl:row-span-2">
-        <Content class="prose dark:prose-invert max-w-none pt-10 pb-8" />
-      </div>
-    </div> -->
   </article>
 </template>

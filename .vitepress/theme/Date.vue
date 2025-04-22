@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import dayjs from 'dayjs'
 import { computed } from 'vue';
-const props = defineProps<{ date: string }>()
+const props = defineProps<{ date: string | number }>()
 
 const date = computed(() => {
   return dayjs(props.date).format("YYYY-MM-DD")

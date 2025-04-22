@@ -1,6 +1,22 @@
 import { defineConfig, } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import MarkdownItPlantuml from 'markdown-it-plantuml'
+import type { Plugin } from 'vite'
+
+const addPostClassPlugin: Plugin = {
+  name: 'add-post-class',
+  apply: () => true,
+  transform(code, id) {
+    if (id.endsWith('components/VPContent.vue')) {
+      return code.replace(
+        /"is-home": \$setup.frontmatter.layout === "home"/g,
+        '"is-home": \$setup.frontmatter.layout === "home", "prose dark:prose-invert": true'
+      )
+    }
+  }
+}
+
+const year = new Date().getFullYear()
 
 const config =  defineConfig({
   base: '/openapi/',
@@ -10,13 +26,14 @@ const config =  defineConfig({
   lastUpdated: true,
   themeConfig: {
     logo: "/logo.png",
-    siteTitle: "<span class='font-extrabold text-gray-900 dark:text-white tracking-tight'>Open Api Docs</span><div class='text-xs text-gray-500 dark:text-white'>Shenzhen Leaderrun Transportation Inc. Open Platform Document Center</div>",
+    siteTitle: "<span class='font-extrabold text-gray-900 dark:text-white tracking-tight'>Open Api Docs</span><div class='sub-title text-xs text-gray-500 dark:text-white'>Shenzhen Leaderrun Transportation Inc. Open Platform Document Center</div>",
     outline: {
       level: 'deep',
       label: '目录',
     },
+    footer: {message: 'Copyright © 2005 - '+year+' 深圳市立航货运股份有限公司', copyright: '<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备11067407号-1 粤公网安备 44030802000646号</a>'},
     lastUpdated: {
-      text: 'Updated at',
+      text: '最后更新于',
       formatOptions: {
         dateStyle: 'full',
         timeStyle: 'medium'
@@ -38,9 +55,10 @@ const config =  defineConfig({
     [
       'script',
       {
-        id: 'prose'
+        id: 'prose',
+        type: "text/javascript"
       },
-      "window.onload = function() {\n const mainEl = document.querySelector('.main'); if (mainEl){mainEl.classList.add('prose', 'dark:prose-invert');}"
+      "window.onload = function() {\n const mainEl = document.querySelector('.container');\n if (mainEl){\n mainEl.classList.add('prose', 'dark:prose-invert');\n}\n}"
     ]
   ],
   markdown: {
@@ -53,7 +71,6 @@ const config =  defineConfig({
     }
   },
   vite: {
-
   },
 })
 export default withMermaid({
