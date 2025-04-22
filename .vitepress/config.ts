@@ -58,7 +58,7 @@ const config =  defineConfig({
         id: 'prose',
         type: "text/javascript"
       },
-      "window.onload = function() {\n const mainEl = document.querySelector('.container');\n if (mainEl){\n mainEl.classList.add('prose', 'dark:prose-invert');\n}\n}"
+      "window.onload = function() {\n const mainEl = document.querySelector('.VPContent');\n if (mainEl){\n mainEl.classList.add('prose', 'dark:prose-invert');\n}\n}"
     ]
   ],
   markdown: {
