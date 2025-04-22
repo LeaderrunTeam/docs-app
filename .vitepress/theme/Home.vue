@@ -9,20 +9,20 @@ const { frontmatter } = useData()
   <div class="divide-y divide-gray-200 dark:divide-slate-200/5">
     <div class="pt-6 pb-8 space-y-2 md:space-y-5">
       <h1
-        class="text-3xl leading-9 font-extrabold text-gray-900 dark:text-white tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
+        class="text-3xl leading-9 font-extrabold text-gray-900 dark:text-gray-200 tracking-tight sm:text-4xl sm:leading-10 md:text-6xl md:leading-14">
         {{ frontmatter.title }}
       </h1>
-      <p class="text-lg leading-7 text-gray-500 dark:text-white">
+      <p class="text-lg leading-7 text-gray-500 dark:text-gray-200">
         {{ frontmatter.subtext }}
       </p>
     </div>
-    <ul class="divide-y divide-gray-200 dark:divide-slate-200/5">
-      <li class="py-12" v-for="{ title, url, description } of posts">
+    <ul class="not-prose divide-y divide-gray-200 dark:divide-slate-200/5">
+      <li class="not-prose py-12" v-for="{ title, url, description } of posts">
         <article class="space-y-2 xl:grid xl:grid-cols-4 xl:space-y-0 xl:items-baseline">
           <div class="space-y-5 xl:col-span-3">
             <div class="space-y-6">
               <h2 class="not-prose text-2xl leading-8 font-bold tracking-tight">
-                <a class="not-prose text-gray-900 dark:text-white" :href="url">{{ title }}</a>
+                <a class="not-prose text-gray-800 dark:text-gray-100" :href="url">{{ title }}</a>
               </h2>
               <div v-if="description" class="max-w-none text-gray-500 dark:text-gray-300" v-html="description"></div>
             </div>

@@ -11,7 +11,7 @@ const config =  defineConfig({
   lastUpdated: true,
   themeConfig: {
     logo: "https://logistics.leaderrun.com/static/logo/logo.png",
-    siteTitle: "<span class='font-extrabold text-gray-900 dark:text-white tracking-tight'>Open Api Docs</span><div class='sub-title text-xs text-gray-500 dark:text-white'>Shenzhen Leaderrun Transportation Inc. Open Platform Document Center</div>",
+    siteTitle: "<span class='font-extrabold text-gray-900 dark:text-gray-200 tracking-tight'>Open Api Docs</span><div class='sub-title text-xs text-gray-500 dark:text-gray-200'>Shenzhen Leaderrun Transportation Inc. Open Platform Document Center</div>",
     outline: {
       level: 'deep',
       label: '目录',
