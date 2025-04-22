@@ -1,21 +1,6 @@
 import { defineConfig, } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import MarkdownItPlantuml from 'markdown-it-plantuml'
-import type { Plugin } from 'vite'
-
-const addPostClassPlugin: Plugin = {
-  name: 'add-post-class',
-  apply: () => true,
-  transform(code, id) {
-    if (id.endsWith('components/VPContent.vue')) {
-      return code.replace(
-        /"is-home": \$setup.frontmatter.layout === "home"/g,
-        '"is-home": \$setup.frontmatter.layout === "home", "prose dark:prose-invert": true'
-      )
-    }
-  }
-}
-
 const year = new Date().getFullYear()
 
 const config =  defineConfig({
@@ -58,7 +43,7 @@ const config =  defineConfig({
         id: 'prose',
         type: "text/javascript"
       },
-      "window.onload = function() {\n const mainEl = document.querySelector('#VPContent .content');\n if (mainEl){\n mainEl.classList.add('prose', 'dark:prose-invert');\n}\n}"
+      "window.onload = function() {\n const mainEl = document.querySelector('.content-container');\n if (mainEl){\n mainEl.classList.add('prose', 'dark:prose-invert');\n}\n}"
     ]
   ],
   markdown: {
