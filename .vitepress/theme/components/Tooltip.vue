@@ -8,7 +8,7 @@ defineProps<{ text: string }>()
   <TooltipProvider :delay-duration="300">
     <TooltipRoot>
       <TooltipTrigger class="text-blue-600 font-blob">
-        {{ text }}
+        {{ text || '⚠️' }}
       </TooltipTrigger>
       <TooltipPortal>
         <TooltipContent

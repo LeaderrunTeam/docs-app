@@ -1,7 +1,6 @@
 import { defineConfig, } from 'vitepress'
 import { withMermaid } from 'vitepress-plugin-mermaid'
 import MarkdownItPlantuml from 'markdown-it-plantuml'
-const year = new Date().getFullYear()
 
 const config =  defineConfig({
   base: '/openapi/',
@@ -16,7 +15,7 @@ const config =  defineConfig({
       level: 'deep',
       label: '目录',
     },
-    footer: {message: 'Copyright © 2005 - '+year+' 深圳市立航货运股份有限公司', copyright: '<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备11067407号-1 粤公网安备 44030802000646号</a>'},
+    footer: {message: 'Copyright © 2005 - present 深圳市立航货运股份有限公司', copyright: '<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备11067407号-1 粤公网安备 44030802000646号</a>'},
     lastUpdated: {
       text: '最后更新于',
       formatOptions: {
