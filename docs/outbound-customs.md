@@ -180,7 +180,14 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | customsNo      | 报关单编号       | String(20)              | 状态码 99、-80 必填。仓转仓没有该值 |    O     |
 | attachmentList | 放行文件         | [`List`](#release-file) | 状态码为 99 必填                    |    O     |
 
-### 放行文件类型 {#release-file}
+### 放行文件 {#release-file}
+
+| **字段名称** | **字段描述**                   | **数据类型** | **详细说明** | **必填** |
+| ------------ | ------------------------------ | ------------ | ------------ | :------: |
+| fileType     | [文件类型](#release-file-type) | String(10)   |              |    Y     |
+| filePath     | 可下载的文件网络地址           | String(100)  |              |    Y     |
+
+#### 放行文件类型 {#release-file-type}
 
 ::: warning 提示
 仓转仓只有 CU000006 文件，其他没有
