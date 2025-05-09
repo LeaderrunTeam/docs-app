@@ -4,6 +4,7 @@ date: 2024-09-01
 author: 赖钻
 sequence: 10
 description: 进仓单创建、修改、取消接口对接，包含收货回执推送文档。
+tag: [{ type: 'danger', text: '废弃' }, { type: 'warning', text: '归档' }]
 ---
 
 > [!danger] 提示
