@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 
-/* .vp-code span {
+.vp-code span {
   color: var(--shiki-dark, inherit) !important;
-} */
+}
 
 :root {
   --c-brand: #8e52a1;
@@ -49,9 +49,7 @@ h3 .header-anchor {
   color: var(--c-brand);
 }
 
-h3 .header-anchor:before {
-  content: '#';
-}
+
 
 /**
  * prism.js tomorrow night eighties for JavaScript, CoffeeScript, CSS and HTML.
@@ -137,11 +135,76 @@ h3 .header-anchor:before {
 
 span.lang {
   position: absolute;
-  right: 0.5em;
-  font-size: 0.75em;
+  right: 2.25em;
+  font-size: 1em;
+  z-index: 2;
   color: #999;
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
     'Liberation Mono', 'Courier New', monospace;
+}
+
+[class*='language-'] > button.copy {
+    direction: ltr;
+    position: absolute;
+    right: 2.25em;
+    z-index: 3;
+    border: 1px solid var(--vp-code-copy-code-border-color);
+    border-radius: 4px;
+    width: 40px;
+    height: 40px;
+    background-color: var(--vp-code-copy-code-bg);
+    opacity: 0;
+    cursor: pointer;
+    background-image: var(--vp-icon-copy);
+    background-position: 50%;
+    background-size: 20px;
+    background-repeat: no-repeat;
+    transition: border-color 0.25s, background-color 0.25s, opacity 0.25s;
+}
+
+[class*='language-'] > button.copy:hover,
+[class*='language-'] > button.copy.copied {
+    border-color: var(--vp-code-copy-code-hover-border-color);
+    background-color: var(--vp-code-copy-code-hover-bg);
+}
+
+ [class*='language-']:hover > button.copy,
+ [class*='language-'] > button.copy:focus {
+  opacity: 1;
+}
+
+[class*='language-'] > button.copy.copied,
+[class*='language-'] > button.copy:hover.copied {
+  /*rtl:ignore*/
+  border-radius: 0 4px 4px 0;
+  background-color: var(--vp-code-copy-code-hover-bg);
+  background-image: var(--vp-icon-copied);
+}
+
+[class*='language-'] > button.copy.copied::before,
+[class*='language-'] > button.copy:hover.copied::before {
+  position: relative;
+  top: -1px;
+  /*rtl:ignore*/
+  transform: translateX(calc(-100% - 1px));
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid var(--vp-code-copy-code-hover-border-color);
+  /*rtl:ignore*/
+  border-right: 0;
+  /*rtl:ignore*/
+  border-radius: 4px 0 0 4px;
+  padding: 0 10px;
+  width: fit-content;
+  height: 40px;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--vp-code-copy-code-active-text);
+  background-color: var(--vp-code-copy-code-hover-bg);
+  white-space: nowrap;
+  content: var(--vp-code-copy-copied-text-content);
 }
 
 .custom-block {

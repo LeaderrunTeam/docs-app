@@ -13,8 +13,6 @@ function findCurrentIndex() {
   return posts.findIndex((p) => p.url === route.path)
 }
 
-
-
 const nextPost = computed(() => posts[findCurrentIndex() - 1])
 const prevPost = computed(() => posts[findCurrentIndex() + 1])
 </script>
@@ -52,5 +50,8 @@ const prevPost = computed(() => posts[findCurrentIndex() + 1])
       </div>
       <div v-else></div>
     </header>
+    <div class="prose dark:prose-invert max-w-none pt-10 pb-8">
+      <Content />
+    </div>
   </article>
 </template>

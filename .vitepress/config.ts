@@ -13,7 +13,7 @@ const config =  defineConfig({
     siteTitle: "<span class='font-extrabold text-gray-900 dark:text-gray-200 tracking-tight'>Open Api Docs</span><div class='sub-title text-xs text-gray-500 dark:text-gray-200'>Shenzhen Leaderrun Transportation Inc. Open Platform Document Center</div>",
     outline: {
       level: 'deep',
-      label: '目录',
+      label: '页面导航',
     },
     footer: {message: 'Copyright © 2005 - present 深圳市立航货运股份有限公司', copyright: '<a href="https://beian.miit.gov.cn/" target="_blank">粤ICP备11067407号-1 粤公网安备 44030802000646号</a>'},
     lastUpdated: {
@@ -35,14 +35,6 @@ const config =  defineConfig({
         type: 'image/x-icon',
         href: 'https://logistics.leaderrun.com/static/logo/favicon.ico'
       }
-    ],
-    [
-      'script',
-      {
-        id: 'prose',
-        type: "text/javascript"
-      },
-      "window.onload = function() {\n const mainEl = document.querySelector('.content-container');\n if (mainEl){\n mainEl.classList.add('prose', 'dark:prose-invert');\n}\n}"
     ]
   ],
   markdown: {

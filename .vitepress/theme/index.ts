@@ -8,6 +8,12 @@ export default {
   Layout,
   enhanceApp(ctx) {
     ctx.app.component('Tip', Tooltip)
+    ctx.app.mixin({
+      mounted() {
+         document.querySelector('.content-container .main')?.remove()
+      }
+    })
+
     DefaultTheme.enhanceApp(ctx)
   }
-}satisfies Theme
+} satisfies Theme
