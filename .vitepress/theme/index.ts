@@ -7,6 +7,8 @@ export default {
   ...DefaultTheme,
   Layout,
   enhanceApp(ctx) {
+    DefaultTheme.enhanceApp(ctx)
+
     ctx.app.component('Tip', Tooltip)
     ctx.app.mixin({
       mounted() {
@@ -14,6 +16,5 @@ export default {
       }
     })
 
-    DefaultTheme.enhanceApp(ctx)
   }
 } satisfies Theme
