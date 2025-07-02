@@ -7,6 +7,7 @@ const config =  defineConfig({
   title: 'Open Api Docs',
   description: 'Leaderrun Open Api Docs',
   cleanUrls: true,
+  ignoreDeadLinks: true,
   lastUpdated: true,
   themeConfig: {
     logo: "https://logistics.leaderrun.com/static/logo/logo.png",
