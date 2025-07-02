@@ -12,6 +12,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | 版本  | 修改描述     | 修订人 |  修订时间  |
 | :---: | ------------ | ------ | :--------: |
 | 1.0.0 | 新增规范文档 | 赖钻   | 2025-04-09 |
+| 1.0.1 | 新增发货人名称（shipperName）字段 | 赖钻   | 2025-07-02 |
 
 ## 创建 Booking
 
@@ -33,6 +34,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | goodsName          | 货物简称       | String(100)                               | 装运的货物简要描述                                                                                                                |    N     |
 | warehouseCode      | 交仓仓库代码   | String(10)                                | 对应立航仓库代码。[监管仓代码表](./basic-data#warehouseCode)、[保税区仓库代码表](./basic-data#bsWarehouseCode)                    |    Y     |
 | receiverName       | 收货人名称     | String(30)                                | 收货人名称                                                                                                                        |    N     |
+| shipperName       | 发货人名称     | String(30)                                | 发货人名称                                                                                                                        |    N     |
 | contactPerson      | 联系人         | String(30)                                | Booking 对应货代联系人.                                                                                                           |    Y     |
 | contactPersonEmail | 联系人电子邮件 | String(120)                               | Booking 对应货代联系人邮箱.                                                                                                       |    Y     |
 | contactNumber      | 联系电话       | String(30)                                | Booking 对应货代联系人电话.                                                                                                       |    N     |
