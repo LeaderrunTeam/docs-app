@@ -1,6 +1,6 @@
 # 卸货港基础信息
 
-[下载Excel数据](/unlocation-basic-data.xlsx)
+<a href="/unlocation-basic-data.xlsx" download="unlocation-basic-data.xlsx">下载Excel数据</a>
 
 | **卸货港代码** | **卸货港名称**                   |
 |--------------|-------------------------------------|
