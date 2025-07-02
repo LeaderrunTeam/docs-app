@@ -1,6 +1,6 @@
 # 国家代码基础信息
 
-<a href="/country-basic-data.xlsx" download="country-basic-data.xlsx">下载Excel数据</a>
+<a href="/openapi/country-basic-data.xlsx" download="country-basic-data.xlsx">下载Excel数据</a>
 
 
 | **三位代码** | **中文名称**          | **英文名称**                                                   | **两位代码** |

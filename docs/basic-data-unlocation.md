@@ -1,6 +1,6 @@
 # 卸货港基础信息
 
-<a href="/unlocation-basic-data.xlsx" download="unlocation-basic-data.xlsx">下载Excel数据</a>
+<a href="/openapi/unlocation-basic-data.xlsx" download="unlocation-basic-data.xlsx">下载Excel数据</a>
 
 | **卸货港代码** | **卸货港名称**                   |
 |--------------|-------------------------------------|
