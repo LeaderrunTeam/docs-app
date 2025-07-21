@@ -28,6 +28,7 @@ description: 立航系统基础信息集合
 | Drum            | 桶装        |
 | Nude Parched    | 裸装        |
 | Iron pallet     | 铁卡板      |
+| Flight Case     | 航空箱      |
 
 ### 监管仓库代码表 {#warehouseCode }
 
