@@ -13,6 +13,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | :---: | ------------ | ------ | :--------: |
 | 1.0.0 | 新增规范文档 | 赖钻   | 2025-04-09 |
 | 1.0.1 | 新增发货人名称（shipperName）字段 | 赖钻   | 2025-07-02 |
+| 1.0.2 | destinationPort 设置为非必填项 | 赖钻   | 2025-07-21 |
 
 ## 创建 Booking
 
@@ -47,7 +48,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | totalGrossWeight   | 总毛重         | Float(10,4)                               | 总毛重                                                                                                                            |    Y     |
 | totalVolume        | 总体积         | Float(4,4)                                | 总体积                                                                                                                            |    Y     |
 | destinationCountry | 目的国        | String(3)                                 | [国家代码表](./basic-data-country)                                                                                                               |    Y     |
-| destinationPort    | 目的港         | String(10)                                | [卸货港代码表](./basic-data-unlocation)                                                                                                               |    Y     |
+| destinationPort    | 目的港         | String(10)                                | [卸货港代码表](./basic-data-unlocation)                                                                                                               |    N     |
 | deliveryStartDate  | 交仓开日日期   | String                                    | 提供 Booking 预计交仓日期。格式：yyyy-MM-dd'T'HH:mm:ss                                                                            |    N     |
 | deliveryCutoffDate | 交仓截止日期   | String                                    | 提供 Booking 交仓截止日期。格式：yyyy-MM-dd'T'HH:mm:ss                                                                            |    N     |
 | mark               | 唛头           | String(200)                               | 提供唛头信息                                                                                                                      |    Y     |
