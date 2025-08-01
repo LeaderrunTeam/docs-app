@@ -14,6 +14,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | 1.0.0 | 新增规范文档 | 赖钻   | 2025-04-09 |
 | 1.0.1 | 新增发货人名称（shipperName）字段 | 赖钻   | 2025-07-02 |
 | 1.0.2 | destinationPort 设置为非必填项 | 赖钻   | 2025-07-21 |
+| 1.0.3 | 新增 paymentTerm 字段用来表示入仓费用结算方式  | 赖钻   | 2025-07-21 |
 
 ## 创建 Booking
 
@@ -53,6 +54,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | deliveryCutoffDate | 交仓截止日期   | String                                    | 提供 Booking 交仓截止日期。格式：yyyy-MM-dd'T'HH:mm:ss                                                                            |    N     |
 | mark               | 唛头           | String(200)                               | 提供唛头信息                                                                                                                      |    Y     |
 | remark             | 备注           | String(200)                               | 提供个别备注                                                                                                                      |    N     |
+| paymentTerm             | 结算方式           | String(2)                               | 入仓费用结算方式                                                                                                                      |    N     |
 | dgClassification   | 危险品编号     | `Set<String>(0...10)`                     |                                                                                                                                   |    N     |
 | sensitive          | 是否敏感货物   | Boolean                                   | 如果为`true`必须上传附件，如保函                                                                                                  |    N     |
 | attachments        | 附件列表       | [`List<Attachment>(0...n)`](#attachement) | 如涉及敏感货物，请提供相应附件                                                                                                    |    N     |
