@@ -15,6 +15,8 @@ tag: [{ type: 'tip', text: 'New' }]
 | 1.0.1 | 新增发货人名称（shipperName）字段 | 赖钻   | 2025-07-02 |
 | 1.0.2 | destinationPort 设置为非必填项 | 赖钻   | 2025-07-21 |
 | 1.0.3 | 新增 paymentTerm 字段用来表示入仓费用结算方式  | 赖钻   | 2025-07-21 |
+| 1.0.4 | 新增 purchaseOrder 字段用来标识采购订单明细  | 赖钻   | 2025-09-08 |
+
 
 ## 创建 Booking
 
@@ -58,6 +60,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | dgClassification   | 危险品编号     | `Set<String>(0...10)`                     |                                                                                                                                   |    N     |
 | sensitive          | 是否敏感货物   | Boolean                                   | 如果为`true`必须上传附件，如保函                                                                                                  |    N     |
 | attachments        | 附件列表       | [`List<Attachment>(0...n)`](#attachement) | 如涉及敏感货物，请提供相应附件                                                                                                    |    N     |
+| purchaseOrders        | 采购订单       | [`List<PurchaseOrder>(0...n)`](#purchaseOrder) | 需要多多样化的订单明细请联系客服配置                                                                                                    |    N     |
 
 #### 附件列表 {#attachement}
 
@@ -65,6 +68,26 @@ tag: [{ type: 'tip', text: 'New' }]
 | ------------ | ------------ | ------------ | ------------------------------ | :------: |
 | name         | 文件名称     | String(100)  | 只能上传 excel/doc/pdf/png/jpg |    Y     |
 | url          | 附件地址     | String(100)  | 附件网络可以下载的地址         |    Y     |
+
+
+### 采购订单 {#purchaseOrder }
+
+:::warning 注意
+不同客户采购订单配置可能不一致，对接前请与客服确认
+:::
+
+| **字段名称** | **字段描述** | **数据类型** | **详细说明**   | **必填** |
+| ------------ | ------------ | ------------ | ------------------------------ | :------: |
+| po          | 采购订单号     | String(30)  |          |    Y     |
+| item          | 项目编号     | String(30)  |          |    N     |
+| packageQty          | 包装数量     | Integer  |             |    Y     |
+| packageUnit          | 包装单位     | String(30)  |          |    Y     |
+| lng          | 长     | Float(10,4)  |          |    Y     |
+| wid          | 宽     | Float(10,4)  |          |    Y     |
+| hgt          | 高     | Float(10,4)  |          |    Y     |
+| volume          | 体积     | Float(10,4)  |          |    Y     |
+| pieceWeight          | 单重     | Float(10,4)  |          |    Y     |
+| grossWeight          | 毛重     | Float(10,4)  |          |    Y     |
 
 ### 返回值
 
