@@ -109,7 +109,7 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
       "vehicleType": 0,
       "vehicleWeight": 3000,
       "containerNo": "xxx000001",
-      "containerType": "40H",
+      "containerType": "40HQ",
       "containerWeight": 1000,
       "vehicleFrameWeight": 500,
       "driverMobile": "13888444478",
@@ -279,7 +279,7 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
       "vehicleType": 0,
       "vehicleWeight": 3000,
       "containerNo": "xxx000001",
-      "containerType": "40H",
+      "containerType": "40HQ",
       "containerWeight": 1000,
       "vehicleFrameWeight": 500,
       "driverMobile": "13888444478",
@@ -463,12 +463,12 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 | vehicleType        | 车型         | Byte         | 1 吨车，0 柜车                              |    Y     |
 | vehicleWeight      | 车自重（kg） | Short        |                                             |    Y     |
 | containerNo        | 集装箱号     | String(11)   | 柜车必填                                    |    O     |
-| containerType      | 柜型         | String(3)    | 柜车必填                                    |    O     |
+| containerType      | 柜型         | String(4)    | 柜车必填                                    |    O     |
 | containerWeight    | 柜重         | Short        | 柜车必填                                    |    O     |
 | vehicleFrameWeight | 车架重       | Short        | 柜车必填                                    |    N     |
 | driverMobile       | 司机手机号   | String(11)   |                                             |    N     |
 | driverName         | 司机姓名     | String(20)   |                                             |    N     |
-| vehicleFrameNo     | 车架号       | String(20)   |                                             |    N     |
+| vehicleFrameNo     | 车架号       | String(20)   |   柜车必填，吨车默认：1                                          |    N     |
 
 #### 随附单证参数 {#cert-params}
 
