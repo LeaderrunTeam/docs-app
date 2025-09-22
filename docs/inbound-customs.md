@@ -13,6 +13,7 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 | 1.0.0 | 新增规范文                                                   | 赖钻   | 2025-04-18 |
 | 1.0.1 | 入仓报关单终审回执新增商品明细资料，包含料号以及自动备案序号 | 赖钻   | 2025-04-22 |
 | 1.0.2 | 删除5和-5的状态回执 | 赖钻   | 2025-09-16 |
+| 1.0.3 | 新增专用账册标识字段 <br/> [仓转仓](#trans-params)新增经营单位和加工单位数据 <br />新增请求参数和返回结果json样例 | 赖钻   | 2025-09-22 |
 
 ## 创建入仓申报订单
 
@@ -26,10 +27,276 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 
 ### 请求参数
 
-::: details 请求参数示例
+::: details 清关入仓请求参数示例
 
 ```json
+{
+  "operationType": "C",
+  "orderNo": "",
+  "orderType": 1,
+  "makerName": "pang",
+  "makerTel": "15188888888",
+  "makerMail": "xxxxx@leaderrun.com",
+  "tradeCurr": "CNY",
+  "remark": "",
+  "operationBy": "pang",
+  "operationTime": "2025-09-22 10:15:18",
+  "bookingList": [
+    {
+      "bookingNo": "WM20592201",
+      "warehouseCode": "PLA",
+      "quantity": 100,
+      "actualQuantity": 100,
+      "warehouseQuantity": 100,
+      "warehouseGrossWeight": 0
+    },
+    {
+      "bookingNo": "WM20592202",
+      "warehouseCode": "PLA",
+      "quantity": 100,
+      "actualQuantity": 100,
+      "warehouseQuantity": 100,
+      "warehouseGrossWeight": 0
+    }
+  ],
+  "commodityList": [
+    {
+      "codeTs": "6204620000",
+      "contrItem": 1,
+      "destinationCountry": "USA",
+      "districtCode": "44199",
+      "dutyMode": "1",
+      "exgVersion": "123456",
+      "unit": "120",
+      "secondUnit": "035",
+      "firstUnit": "015",
+      "goodsModel": "0|0|11|11|X|X|XX|X|X|XX|XXXXXX",
+      "goodsName": "测试商品12",
+      "goodsNo": 1,
+      "originCountry": "CHN",
+      "price": 2.3,
+      "totalPrice": "230",
+      "priceToTotal": false,
+      "goodsExgNo": "202509160002",
+      "commodityItemList": [
+        {
+          "bookingNo": "WM20592201",
+          "firstQuantity": 100,
+          "grossWeight": 1000,
+          "netWeight": 900,
+          "packingQuantity": 100,
+          "quantity": 100,
+          "packId": 0,
+          "secondQty": 900
+        },
+        {
+          "bookingNo": "WM20592202",
+          "firstQuantity": 100,
+          "grossWeight": 1000,
+          "netWeight": 900,
+          "packingQuantity": 100,
+          "quantity": 100,
+          "packId": 0,
+          "secondQty": 900
+        }
+      ]
+    }
+  ],
+  "vehicleList": [
+    {
+      "bookingNo": "WM20592201",
+      "vehicleNo": "yb20014",
+      "vehicleType": 0,
+      "vehicleWeight": 3000,
+      "containerNo": "xxx000001",
+      "containerType": "40H",
+      "containerWeight": 1000,
+      "vehicleFrameWeight": 500,
+      "driverMobile": "13888444478",
+      "driverName": "zhang3"
+    }
+  ],
+  "tradeMode": "0110",
+  "cutMode": "101",
+  "manualNo": null,
+  "consignorName": "深圳市xxxx有限公司",
+  "consignorCode": "44039xxxxx",
+  "consignorScc": "9144030075762xxxxx",
+  "consignorCiq": "1234567890",
+  "ownerName": "深圳市xxxx有限公司",
+  "ownerCode": "4403960ERP",
+  "ownerScc": "9144030075762xxxxx",
+  "ownerCiq": "442296xxxxx",
+  "consigneeName": "xx",
+  "licenseNo": "",
+  "contractNo": "12345678",
+  "markNo": "N/M",
+  "wrapType": "29",
+  "otherWrapTypes": [],
+  "mode": 0,
+  "businessType": 4,
+  "tradeCountry": "USA",
+  "transMode": "3",
+  "feeCurr": "USD",
+  "feeMark": "",
+  "feeRate": "",
+  "otherCurr": "",
+  "otherMark": "",
+  "otherRate": "",
+  "insurCurr": "",
+  "insurMark": "",
+  "insurRate": "",
+  "specialRelation": "",
+  "priceImpact": "",
+  "royalty": "",
+  "entrustNo": "20245355013164207",
+  "ecNo": "",
+  "documentList": [
+    {
+      "certCode": "B",
+      "docuCode": "xxxxxxxxxxxxxxxxxx",
+      "fileName": "00001.png",
+      "filePath": "http://dev.leaderrun.org/api/download/wm/attachment/inbound/2025/8/30/714344967578757_963d7e1531924ee7bdbdfb4775f2d335.png"
+    }
+  ],
+  "attachmentList": [
+    {
+      "fileType": "00000001",
+      "fileList": [
+        {
+          "name": "B01.png",
+          "path": "http://dev.leaderrun.org/api/download/wm/attachment/inbound/2025/8/29/714044118038277_840a187b73dc42f0884bc8176f62ca52.jpg"
+        }
+      ]
+    },
+    {
+      "fileType": "00000004",
+      "fileList": [
+        {
+          "name": "B02.png",
+          "path": "http://dev.leaderrun.org/api/download/wm/attachment/inbound/2025/8/30/714354063221893_9bafdd609b4b49b5a7deb92344d6c1ad.png"
+        }
+      ]
+    },
+    {
+      "fileType": "C0000002",
+      "fileList": [
+        {
+          "name": "00002.png",
+          "path": "http://dev.leaderrun.org/api/download/wm/attachment/inbound/2025/9/8/717587096429701_64a03710cd394e4db052f0481ec25aab.png"
+        }
+      ]
+    }
+  ],
+  "outbdWarehouseName": "",
+  "outbdWarehouseCode": "",
+  "rltPutrecNo": "",
+  "warehouseNature": ""
+}
+```
 
+:::
+
+::: details 仓转仓请求参数示例
+
+```json
+{
+  "operationType": "C",
+  "orderNo": "",
+  "orderType": 1,
+  "makerName": "pang",
+  "makerTel": "15188888888",
+  "makerMail": "jxxxxg@leaderrun.com",
+  "tradeCurr": "CNY",
+  "remark": "",
+  "operationBy": "pang",
+  "operationTime": "2025-09-22 10:15:18",
+  "bookingList": [
+    {
+      "bookingNo": "WM20592203",
+      "warehouseCode": "PLA",
+      "quantity": 100,
+      "actualQuantity": 100,
+      "warehouseQuantity": 100,
+      "warehouseGrossWeight": 0
+    },
+    {
+      "bookingNo": "WM20592204",
+      "warehouseCode": "PLA",
+      "quantity": 100,
+      "actualQuantity": 100,
+      "warehouseQuantity": 100,
+      "warehouseGrossWeight": 0
+    }
+  ],
+  "commodityList": [
+    {
+      "codeTs": "6204620000",
+      "contrItem": 1,
+      "destinationCountry": "USA",
+      "districtCode": "44199",
+      "dutyMode": "1",
+      "exgVersion": "123456",
+      "unit": "120",
+      "secondUnit": "035",
+      "firstUnit": "015",
+      "goodsModel": "0|0|11|11|X|X|XX|X|X|XX|XXXXXX",
+      "goodsName": "测试商品12",
+      "goodsNo": 1,
+      "originCountry": "CHN",
+      "price": 2.3,
+      "totalPrice": 230,
+      "priceToTotal": false,
+      "goodsExgNo": "202509160002",
+      "commodityItemList": [
+        {
+          "bookingNo": "WM20592203",
+          "firstQuantity": 100,
+          "grossWeight": 1000,
+          "netWeight": 900,
+          "packingQuantity": 100,
+          "quantity": 100,
+          "secondQty": 900,
+          "packId": "0"
+        },
+        {
+          "bookingNo": "WM20592204",
+          "firstQuantity": 100,
+          "grossWeight": 1000,
+          "netWeight": 900,
+          "packingQuantity": 100,
+          "quantity": 100,
+          "secondQty": 900,
+          "packId": "0"
+        }
+      ]
+    }
+  ],
+  "vehicleList": [
+    {
+      "bookingNo": "WM20592203",
+      "vehicleNo": "yb20014",
+      "vehicleType": 0,
+      "vehicleWeight": 3000,
+      "containerNo": "xxx000001",
+      "containerType": "40H",
+      "containerWeight": 1000,
+      "vehicleFrameWeight": 500,
+      "driverMobile": "13888444478",
+      "driverName": "zhang3"
+    }
+  ],
+  "businessType": 2,
+  "ownerName": "深圳xxxxx限公司",
+  "ownerCode": "4403960xxx",
+  "consignorCode": "4403960xxx",
+  "consignorName": "深圳市xxxx有限公司",
+  "mode": 0,
+  "outbdWarehouseName": "深圳市xxxxx有限公司",
+  "outbdWarehouseCode": "4403960xxx",
+  "rltPutrecNo": "L5352P25A006",
+  "warehouseNature": 1
+}
 ```
 
 :::
@@ -55,6 +322,7 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 | tradeCurr     | 成交币制           | String(3)                           |                                |    Y     |
 | remark        | 备注               | String(200)                         |                                |    N     |
 | operationBy   | 报关资料提交人     | String(10)                          |                                |    Y     |
+| exclusivePutrecNo | 专用账册标识 <Badge text="1.0.3" /> | Boolean(20) |                                |    Y     |
 | operationTime | 提交时间           | String                              | `yyyy-MM-dd HH:mm:ss`          |    Y     |
 | bookingList   | 进仓单号参数       | [`List(1...n)`](#booking-params)    | 实际送货数据                   |    Y     |
 | commodityList | 报关单商品资料参数 | [`List(1...50)`](#commodity-params) |                                |    Y     |
@@ -103,7 +371,7 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 | documentList    | 随附单证                       | [`List`](#cert-params)               |                                                                                                                                           |    N     |
 | attachmentList  | 报关单随附单据                 | [`List`](#custom-attachement-params) |                                                                                                                                           |    N     |
 
-#### 仓转仓业务参数
+#### 仓转仓业务参数 {#trans-params}
 
 | **字段名称**       | **字段描述**   | **数据类型** | **详细说明**       | **必填** |
 | ------------------ | -------------- | ------------ | ------------------ | :------: |
@@ -111,6 +379,14 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 | outbdWarehouseCode | 转出方海关编码 | String(10)   |                    |    Y     |
 | rltPutrecNo        | 转出方账册号   | String(12)   |                    |    Y     |
 | warehouseNature    | 转出方仓库性质 | Byte         | 1:监管仓、2:保税仓 |    Y     |
+| consignorName   | 经营单位中文名称<Badge text="1.0.3" />         | String(100)                          |                                                                                                                                           |    Y     |
+| consignorCode   | 经营单位 10 位海关编码   <Badge text="1.0.3" />    | String(10)                           |                                                                                                                                           |    Y     |
+| consignorScc    | 经营单位 18 位社会信用代码 <Badge text="1.0.3" />  | String(18)                           |                                                                                                                                           |    Y     |
+| ownerName       | 加工单位企业中文名称   <Badge text="1.0.3" />    | String(100)                          |                                                                                                                                           |    Y     |
+| ownerCode       | 加工单位 10 位海关编码吗 <Badge text="1.0.3" />  | String(10)                           | 没有 10 位海关编码填写 NO                                                                                                                 |    Y     |
+| ownerScc        | 加工单位 18 位社会信用代码 <Badge text="1.0.3" /> | String(18)                           |                                                                                                                                           |    N     |
+
+
 
 #### 进仓单参数 {#booking-params}
 
@@ -171,8 +447,6 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 | spareGrossWeight | 备品毛重     | BigDecimal(10,4) |                                             |    N     |
 
 #### 核放单参数 {#vehicle-params}
-
-:warning: 暂不支持一车多单
 
 ::: tip 进仓单号(bookingNo)
 
@@ -243,7 +517,25 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 ::: details 响应示例
 
 ```json
-{}
+{
+  "invtNo": "111",
+  "invtQd": "122",
+  "status": "55",
+  "orderNo": "ASNE2509311998",
+  "statusTime": "2025-09-19 10:17:49",
+  "commodityList": [
+    {
+      "recordNo": "1121",
+      "goodsExgNo": "ASNE2509311998-1"
+    }
+  ],
+  "attachmentList": [
+    {
+      "filePath": "http://dev.leaderrun.org/api/download/cm/customs/2025/9/19/p9qGD6mxrgJ_CU000007.pdf",
+      "fileType": "CU000007"
+    }
+  ]
+}
 ```
 
 :::
@@ -284,8 +576,8 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 
 | **状态代码** | **状态描述**                                           |
 | ------------ | ------------------------------------------------------ |
-|~5~	|~委托中，工厂提交报关资料~|
-|~-5	~|~报关资料退回。在申报之前报关员可以将报关资料退回给工厂~|
+|~~5~~	|~~委托中，工厂提交报关资料~~ <Badge text="1.0.2" /> |
+|~~-5~~|~~报关资料退回。在申报之前报关员可以将报关资料退回给工厂~~ <Badge text="1.0.2" />|
 | 20           | 报关资料审核通过                                       |
 | -20          | 报关资料审核不通过                                     |
 | 40           | 报关单资料报关单开始申报                               |
