@@ -11,6 +11,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | 版本  | 修改描述   | 修订人 |  修订时间  |
 | :---: | ---------- | ------ | :--------: |
 | 1.0.0 | 新增规范文 | 赖钻   | 2025-04-23 |
+| 1.0.1 | 删除[出仓报关单明细](#commoditys)的商品名称和自动备案序号字段 <br /> 新增[核放单参数](#vehicle-params) | 赖钻   | 2025-09-23 |
 
 ## 创建出仓申报订单
 
@@ -34,9 +35,15 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 
 #### 公共参数
 
+:::warning
+
+若需要修改，请先撤回后再创建
+
+:::
+
 | **字段名称**       | **字段描述** | **数据类型**                 | **详细说明**                                           | **必填** |
 | ------------------ | ------------ | ---------------------------- | ------------------------------------------------------ | :------: |
-| operationType      | 操作类型     | String(1)                    | `C:创建`/`U:修改`/`D:撤回`                             |    Y     |
+| operationType      | 操作类型     | String(1)                    | `C:创建`/`D:撤回`                             |    Y     |
 | outbdNo            | 出库单号     | String(20)                   |                                                        |    Y     |
 | warehouseCode      | 作业仓库代码 | `Set<String>(1...n)`         | 多仓拼柜的时候填写多个仓库                             |    Y     |
 | expectDate         | 预计出库日期 | String(10)                   | `yyyy-MM-dd`                                           |    Y     |
@@ -57,6 +64,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | csRemark           | 备注         | String(200)                  |                                                        |    N     |
 | items              | 出库货物明细 | [`List(1...n)`](#items)      | 和报关资料明细二选一，该字段优先级高于报关资料明细字段 |    N     |
 | commodityList      | 报关资料明细 | [`List(1...n)`](#commoditys) | 和出库明细二选一                                       |    N     |
+| vehicleList   | 车辆信息           | [`List(1...n)`](#vehicle-params)    |                                |    Y     |
 
 #### 清关出仓业务参数
 
@@ -84,7 +92,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 ##### 出库货物明细 <badge type="tip" text="推荐" /> {#items}
 
 > [!warning] 提示
-> 和出库报关明细二选一
+> **和出库报关明细二选一**
 >
 > 立航会将`bookingNo`关联的入仓所有报关资料商品明细数据带出生成出仓报关资料商品明细。由立航确保海关库存不会有剩余
 
@@ -100,7 +108,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 ##### 出仓报关单明细 {#commoditys}
 
 > [!warning] 提示
-> 和出库货物明细二选一
+> **和出库货物明细二选一**
 >
 > **需要客户自行管控库存剩余。** 如果净重、毛重、报关件数、法一数量、法二数量、成交数量扣除本次出仓数量后剩余库存小于 1 ，立航不会允许这次订单的创建。立航会在错误内容中详细说明扣减后剩余的库存，客户可以根据错误内容修改出仓报关明细数量
 
@@ -108,8 +116,8 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | ------------------ | ---------------- | ----------------- | ------------------------------------------------------------------- | :------: |
 | goodsExgNo         | 料号             | String(32)        | [入仓申报回执](./inbound-customs.md#commodity-back)中的料号         |    Y     |
 | goodsModel         | 入仓申报要素     | String(255)       |                                                                     |    Y     |
-| goodsName          | 商品名称         | String(100)       |                                                                     |    Y     |
-| recordNo           | 自动备案序号     | String(12)        | [入仓申报回执](./inbound-customs.md#commodity-back)中的自动备案序号 |    Y     |
+| ~~goodsName~~          | ~~商品名称~~         | ~~String(100) ~~    <Badge text="1.0.1" />    |                                                                     |    Y     |
+| ~~recordNo~~           | ~~自动备案序号~~     | ~~String(12)~~   <Badge text="1.0.1" />    | ~~[入仓申报回执](./inbound-customs.md#commodity-back)中的自动备案序号 ~~|    Y     |
 | codeTs             | 商品编码         | String(10)        |                                                                     |    Y     |
 | price              | 单价             | BigDecimal(10, 4) |                                                                     |    Y     |
 | grossWeight        | 总毛重           | BigDecimal(10, 4) |                                                                     |    Y     |
@@ -124,6 +132,27 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | totalSecondQty     | 第二法定数量     | BigDecimal(14, 4) |                                                                     |    N     |
 | spareQuantity      | 备品件数         | Short             |                                                                     |    N     |
 | spareGrossWeight   | 备品毛重         | BigDecimal(14, 4) |                                                                     |    N     |
+
+#### 核放单参数 {#vehicle-params}
+
+::: tip 
+
+一车多单：立航会将相同车牌（未申报）的订单合并为一个核放单
+
+:::
+
+| **字段名称**       | **字段描述** | **数据类型** | **详细说明**                                | **必填** |
+| ------------------ | ------------ | ------------ | ------------------------------------------- | :------: |
+| vehicleNo          | 承运车牌号   | String(8)    |                                             |    Y     |
+| vehicleType        | 车型         | Byte         | 1 吨车，0 柜车                              |    Y     |
+| vehicleWeight      | 车自重（kg） | Short        |                                             |    Y     |
+| containerNo        | 集装箱号     | String(11)   | 柜车必填                                    |    O     |
+| containerType      | 柜型         | String(4)    | 柜车必填                                    |    O     |
+| containerWeight    | 柜重         | Short        | 柜车必填                                    |    O     |
+| vehicleFrameWeight | 车架重       | Short        | 柜车必填                                    |    N     |
+| driverMobile       | 司机手机号   | String(11)   |                                             |    N     |
+| driverName         | 司机姓名     | String(20)   |                                             |    N     |
+| vehicleFrameNo     | 车架号       | String(20)   |   柜车必填，吨车默认：1                                          |    N     |
 
 #### 提单信息 {#bill}
 
