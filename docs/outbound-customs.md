@@ -55,7 +55,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | containerType      | 柜型         | String(4)                    | 柜车必填                                               |    O     |
 | vehicleFrameWeight | 车架重       | BigDecimal(10, 4)            | 柜车必填                                               |    O     |
 | vehicleWeight      | 车自重       | BigDecimal(10, 4)            |                                                        |    Y     |
-| businessType       | 业务类型     | Byte                         | 仓转仓出仓填：1、清关出仓填：5                         |    Y     |
+| businessType       | 业务类型     | Byte                         | 仓转仓出仓填：3、清关出仓填：1                         |    Y     |
 | transportCode      | 运输方式     | String(1)                    | 仓转仓填：9，海运填：4，陆运填：2，空运填：5           |    Y     |
 | destinationCountry | 目的国代码   | String(3)                    | 仓转仓可以固定填写：CHN                                |    Y     |
 | plate              | 车牌         | String(8)                    |                                                        |    Y     |
