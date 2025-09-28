@@ -322,7 +322,7 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 | tradeCurr     | 成交币制           | String(3)                           |                                |    Y     |
 | remark        | 备注               | String(200)                         |                                |    N     |
 | operationBy   | 报关资料提交人     | String(10)                          |                                |    Y     |
-| exclusivePutrecNo | 专用账册标识 <Badge text="1.0.3" /> | Boolean(20) |                                |    Y     |
+| exclusivePutrecNo | 专用账册标识 <Badge text="1.0.3" /> | Boolean |         `true`：专用账册、`false`：普通账册                       |    Y     |
 | operationTime | 提交时间           | String                              | `yyyy-MM-dd HH:mm:ss`          |    Y     |
 | bookingList   | 进仓单号参数       | [`List(1...n)`](#booking-params)    | 实际送货数据                   |    Y     |
 | commodityList | 报关单商品资料参数 | [`List(1...50)`](#commodity-params) |                                |    Y     |
