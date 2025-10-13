@@ -13,6 +13,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | 1.0.0 | 新增规范文 | 赖钻   | 2025-04-23 |
 | 1.0.1 | 删除[出仓报关单明细](#commoditys)的商品名称和自动备案序号字段 <br /> 新增[核放单参数](#vehicle-params) | 赖钻   | 2025-09-23 |
 | 1.0.2 | 删除运输方式字段 | 赖钻   | 2025-09-28 |
+| 1.0.3 | 出仓申报放行新增申报报关单数据以及申报的完整商品明细数据 | 赖钻   | 2025-10-13 |
 
 
 ## 创建出仓申报订单
@@ -217,7 +218,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | 99           | 申报完成 <Tip>如果有联单，所有报关资料放行，码头放行才有这个状态回传</Tip> |
 | -80          | 报关单查验，仓转仓没有这个状态                                             |
 
-### 报关数据
+### 报关数据 {#customs-callback}
 
 | **字段名称**   | **字段描述**     | **数据类型**            | **详细说明**                        | **必填** |
 | -------------- | ---------------- | ----------------------- | ----------------------------------- | :------: |
@@ -226,7 +227,103 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | invtQd         | 核注清单 QD 号   | String(20)              | 状态码 99 必填                      |    O     |
 | seqNo          | 统一编号         | String(20)              | 状态码 99、-80 必填。仓转仓没有该值 |    O     |
 | customsNo      | 报关单编号       | String(20)              | 状态码 99、-80 必填。仓转仓没有该值 |    O     |
+| declare  | 申报数据           | [`Object`](#declare-data) | 状态码为 99 必填        |    O     |
 | attachmentList | 放行文件         | [`List`](#release-file) | 状态码为 99 必填                    |    O     |
+| commodityList  | 商品明细           | [`List`](#commodity-back) | 状态码为 99 必填        |    O     |
+
+### 申报数据 {#declare-data}
+
+| **字段名称** | **字段描述**                   | **数据类型** | **详细说明** | **必填** |
+| ------------ | ------------------------------ | ------------ | ------------ | :------: |
+| consigneeName     | 境外收货人名称 | String(100)   |              |    Y     |
+| markNo     | 标记唛码           | String(200)  |              |    Y     |
+| remark     | 备注           | String(255)  |              |    N    |
+| cutMode     | 征免性质代码           | String(3)  |              |    N    |
+| licenseNo     | 许可证号           | String(20)  |              |    N    |
+| manualNo     | 备案号           | String(12)  |              |    N    |
+| wrapType     | 包装种类代码           | String(2)  |              |    Y    |
+| tradeCountry     | 贸易国代码           | String(3)  |              |    Y    |
+| transMode     | 成交方式           | String(1)  |              |    Y    |
+| feeCurr     | 运费币制代码           | String(3)  |              |    N    |
+| contractNo     | 合同号           | String(32)  |              |    N   |
+| tradeMode     | 监管方式代码           | String(4)  |              |    Y    |
+| feeMark     | 运费标记           | String(1)  |              |    N    |
+| feeRate     | 运费           | BigDecimal(14,4)  |              |    N    |
+| otherCurr     | 杂费币制代码           | String(3)  |              |    N    |
+| otherMark     | 杂费标记           | String(1)  |              |    N    |
+| otherRate     | 杂费           | BigDecimal(14,4)  |              |    N    |
+| insurCurr     | 保险费币制代码           | String(3)  |              |    N    |
+| insurMark     | 保险费标记           | String(1)  |              |    N    |
+| insurRate     | 保险费           | BigDecimal(14,4)  |              |    N    |
+| specialRelation     | 特殊关系确认           | Byte(1)  |              |    N    |
+| priceImpact     | 价格影响确认           | Byte(1)  |              |    N   |
+| customMaster     | 申报地海关           | String(4)  |              |    N   |
+| iePort     | 出境关别           | String(4)  |              |    Y    |
+| cusTrafMode     | 运输方式           | String(1)  |              |    Y    |
+| cusTradeCountry     | 运抵国/启运国           | String(3)  |              |    Y    |
+| distinatePort     | 指运港/经停港           | String(6)  |              |    Y    |
+| entryType     | 报关单类型           | String(1)  |              |    Y    |
+| ciqEntyPortCode     | 进口入境口岸           | String(6)  |              |    N    |
+| despPortCode     | 进口是启运港/出口是离境口岸           | String(6)  |              |    Y    |
+| ieDate     | 进口是进口日期/出口是出口日期           | String(8)  |              |    N    |
+| ieFlag     | 进出口标识           | String(1)  |              |    Y    |
+| trafName     | 运输工具名称           | String(50)  |              |    N   |
+| voyageNo     | 航次号           | String(32)  |              |    N    |
+| billNo     | 提运单号           | String(32)  |              |    Y    |
+| goodsPlace     | 货物存放地点           | String(100)  |              |    N    |
+| cnsnTradeScc     | 境内发货人18位社会信用代码           | String(18)  |              |    Y    |
+| cnsnTradeCode     | 境内发货人10位海关代码           | String(10)  |              |    Y    |
+| consignorCname     | 境内发货人企业名称(中文)           | String(70)  |              |    Y    |
+| consignorCode     | 境内发货人10位检验检疫编码        | String(10)  |              |    N   |
+| ownerScc     |      生产销售单位18位社会信用代码     | String(18)  |              |    Y    |
+| ownerCode     |     生产销售单位10位海关代码      | String(10)  |              |    Y    |
+| ownerName     |     生产销售单位企业名称      | String(70)  |              |    Y    |
+| ownerCiqCode     |     生产销售单位10位检验检疫编码      | String(10)  |              |    N    |
+| dclEtpsno     |     申报单位10位海关编码      | String(10)  |              |    Y    |
+| dclEtpsSccd     |     申报单位社会信用代码      | String(18)  |              |    Y    |
+| dclEtpsNm     |     申报单位名称      | String(70)  |              |    Y    |
+| dclEtpsCiq     |     申报单位检验检疫      | String(10)  |              |    N    |
+| bonNo     |     保税/监管场地	      | String(20)  |              |    Y    |
+| selfDclPmt     |     自报自缴表示      | Byte  |              |    N    |
+| otherWrapType     |     其他包装单位代码，多个使用英文逗号隔开      | String(50)  |              |    N    |
+
+
+### 商品明细 {#commodity-back}
+
+| **字段名称** | **字段描述** | **数据类型** | **详细说明**                       | **必填** |
+| ------------ | ------------ | ------------ | ---------------------------------- | :------: |
+| goodsExgNo   | 商品料号     | String(32)   | 和创建入仓报关资料商品明细料号呼应 |    Y     |
+| recordNo     | 自动备案序号 | String(20)   |                                    |    Y     |
+| ciq     | 检疫检疫名称和代码，前3位表示代码后面表示中文名称，使用英文逗号隔开 | String(255)   |                                    |    N    |
+| codeTs     | 商品编码 | String(10)   |                                    |    Y     |
+| contrItem     | 手账册备案序号 | String(20)   |                                    |   N     |
+| destinationCountry     | 最终目的国代码 | String(6)   |                                    |    Y     |
+| districtCode     | 境内货源地代码 | String(6)   |                                    |    Y     |
+| dutyMode     | 征免方式 | String(2)   |                                    |    Y     |
+| exgVersion     | 版本号 | String(20)   |                                    |   N     |
+| goodsModel     | 申报要素 | String(255)   |                                    |    Y     |
+| goodsName     | 商品名称 | String(50)   |                                    |    Y     |
+| goodsNo     | 项号 | Byte   |                                    |    Y     |
+| originCountry     | 原产国代码 | String(3)   |                                    |    Y     |
+| price     | 单价 | BigDecimal(10,4)   |                                    |    Y     |
+| totalPrice     | 总价 | BigDecimal(10,4)   |                                    |    Y     |
+| unit     | 成交单位代码 | String(4)   |                                    |    Y     |
+| firstUnit     | 第一法定单位代码 | String(4)   |                                    |    Y     |
+| secondUnit     | 第二法定单位代码 | String(4)   |                                    |    N    |
+| totalFirstQuantity     | 第一法定数量 | BigDecimal(14,4)   |                                    |    Y     |
+| totalQuantity     | 成交数量 | BigDecimal(14,4)   |                                    |    Y     |
+| totalSecondQty     | 第二法定数量 | BigDecimal(14,4)   |                                    |    N     |
+| purpose     | 用途 | String(2)   |                                    |    N     |
+| goodsAttr     | 货物属性，多个使用英文逗号隔开 | String(20)   |                                    |    N     |
+| produceDate     | 生产日期 | String(100)   |                                    |    N     |
+| sourceFlag     | 来源标识 | String(1)   |                                    |    N     |
+| origPlaceCode     | 原产地代码 | String(6))   |                                    |    N     |
+| ciqDestCode     | 目的地 | String(6)   |                                    |    N     |
+| totalSpareQuantity     | 备品件数 | Short   |                                    |    N     |
+| totalSpareGrossWeight     | 备品毛重 | BigDecimal(10,4)   |                                    |    N     |
+| totalGrossWeight     | 总毛重 | BigDecimal(10,4)  |                                    |    N     |
+| totalNetWeight     | 总净重 | BigDecimal(10,4)   |                                    |    Y    |
+| totalPackingQuantity     | 总报关件数 | Short   |                                    |    N     |
 
 ### 放行文件 {#release-file}
 
