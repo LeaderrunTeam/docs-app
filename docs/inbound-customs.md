@@ -14,7 +14,7 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 | 1.0.1 | 入仓报关单终审回执新增商品明细资料，包含料号以及自动备案序号 | 赖钻   | 2025-04-22 |
 | 1.0.2 | 删除5和-5的状态回执 | 赖钻   | 2025-09-16 |
 | 1.0.3 | 新增专用账册标识字段 <br/> [仓转仓](#trans-params)新增经营单位和加工单位数据 <br />新增请求参数和返回结果json样例 | 赖钻   | 2025-09-22 |
-| 1.0.3 | 报关单放行新增申报数据以及申报的完整商品明细数据 | 赖钻   | 2025-10-13 |
+| 1.0.4 | 报关单放行新增申报数据以及申报的完整商品明细数据 | 赖钻   | 2025-10-13 |
 
 ## 创建入仓申报订单
 
@@ -552,9 +552,9 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 | customsNo      | 报关单编号         | String(20)                | 状态码 80、90、100 必填 |    O     |
 | manualNo       | 金二手账册统一编号 | String(20)                | 状态码 70 必填          |    O     |
 | manualQd       | 金二手账册 QD 号   | String(20)                | 状态码 70 必填          |    O     |
-| declare  | 申报数据           | [`Object`](#declare-data) | 状态码为 100 必填        |    O     |
+| declare  | 申报数据   <Badge text="1.0.4" />        | [`Object`](#declare-data) | 状态码为 100 必填        |    O     |
 | attachmentList | 放行文件           | [`List`](#release-file)   | 状态码为 55 必填        |    O     |
-| commodityList  | 商品明细           | [`List`](#commodity-back) | 状态码为 55 必填        |    O     |
+| commodityList  | 商品明细    <Badge text="1.0.4" />       | [`List`](#commodity-back) | 状态码为 55 必填        |    O     |
 
 ### 申报数据 {#declare-data}
 

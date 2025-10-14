@@ -227,9 +227,9 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | invtQd         | 核注清单 QD 号   | String(20)              | 状态码 99 必填                      |    O     |
 | seqNo          | 统一编号         | String(20)              | 状态码 99、-80 必填。仓转仓没有该值 |    O     |
 | customsNo      | 报关单编号       | String(20)              | 状态码 99、-80 必填。仓转仓没有该值 |    O     |
-| declare  | 申报数据           | [`Object`](#declare-data) | 状态码为 99 必填        |    O     |
+| declare  | 申报数据      <Badge text="1.0.3" />     | [`Object`](#declare-data) | 状态码为 99 必填        |    O     |
 | attachmentList | 放行文件         | [`List`](#release-file) | 状态码为 99 必填                    |    O     |
-| commodityList  | 商品明细           | [`List`](#commodity-back) | 状态码为 99 必填        |    O     |
+| commodityList  | 商品明细     <Badge text="1.0.3"      | [`List`](#commodity-back) | 状态码为 99 必填        |    O     |
 
 ### 申报数据 {#declare-data}
 
