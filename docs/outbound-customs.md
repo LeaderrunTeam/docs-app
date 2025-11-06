@@ -15,6 +15,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | 1.0.2 | 删除运输方式字段 | 赖钻   | 2025-09-28 |
 | 1.0.3 | 出仓申报放行新增申报报关单数据以及申报的完整商品明细数据 | 赖钻   | 2025-10-13 |
 | 1.0.4 | 返回值申报数据新增成交币值 | 赖钻   | 2025-10-15 |
+| 1.0.5 | 新增商品明细混装功能 | 赖钻   | 2025-11-06 |
 
 
 ## 创建出仓申报订单
@@ -60,7 +61,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | vehicleFrameWeight | 车架重       | BigDecimal(10, 4)            | 柜车必填                                               |    O     |
 | vehicleWeight      | 车自重       | BigDecimal(10, 4)            |                                                        |    Y     |
 | businessType       | 业务类型     | Byte                         | 仓转仓出仓填：3、清关出仓填：1                         |    Y     |
-| ~~transportCode~~   | ~~运输方式~~     <Badge text="1.0.2" />  | ~~String(1)~~                 | ~~仓转仓填：9，海运填：4，陆运填：2，空运填：5 ~~          |    Y     |
+| ~~transportCode~~   | ~~运输方式~~     <Badge text="1.0.2" />  | ~~String(1)~~                 | ~~仓转仓填：9，海运填：4，陆运填：2，空运填：5~~          |    Y     |
 | destinationCountry | 目的国代码   | String(3)                    | 仓转仓可以固定填写：CHN                                |    Y     |
 | plate              | 车牌         | String(8)                    |                                                        |    Y     |
 | driver             | 司机姓名     | String(6)                    |                                                        |    N     |
@@ -118,10 +119,13 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 
 | **字段名称**       | **字段描述**     | **数据类型**      | **详细说明**                                                        | **必填** |
 | ------------------ | ---------------- | ----------------- | ------------------------------------------------------------------- | :------: |
+| id         | 唯一序号             | Long       |     需要保证在这份订单中唯一  <Badge text="1.0.5" />  |    Y     |
+| packId         | 混装标识             | Long       |   <Tip text="1:混装; 0:非混装; 或者填写主项的id">混装主项填写：1 <br/> 非混装填写：0 <br/> 混装子项填写：主项的id</Tip>  <Badge text="1.0.5" />  |    Y     |
+| goodsExgNo         | 料号             | String(32)        | [入仓申报回执](./inbound-customs.md#commodity-back)中的料号         |    Y     |
 | goodsExgNo         | 料号             | String(32)        | [入仓申报回执](./inbound-customs.md#commodity-back)中的料号         |    Y     |
 | goodsModel         | 入仓申报要素     | String(255)       |                                                                     |    Y     |
-| ~~goodsName~~          | ~~商品名称~~         | ~~String(100) ~~    <Badge text="1.0.1" />    |                                                                     |    Y     |
-| ~~recordNo~~           | ~~自动备案序号~~     | ~~String(12)~~   <Badge text="1.0.1" />    | ~~[入仓申报回执](./inbound-customs.md#commodity-back)中的自动备案序号 ~~|    Y     |
+| ~~goodsName~~          | ~~商品名称~~         | ~~String(100)~~    <Badge text="1.0.1" />    |                                                                     |    Y     |
+| ~~recordNo~~           | ~~自动备案序号~~     | ~~String(12)~~   <Badge text="1.0.1" />    | ~~[入仓申报回执](./inbound-customs.md#commodity-back)中的自动备案序号~~|    Y     |
 | codeTs             | 商品编码         | String(10)        |                                                                     |    Y     |
 | price              | 单价             | BigDecimal(10, 4) |                                                                     |    Y     |
 | grossWeight        | 总毛重           | BigDecimal(10, 4) |                                                                     |    Y     |
