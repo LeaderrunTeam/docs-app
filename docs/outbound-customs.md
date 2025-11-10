@@ -16,6 +16,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | 1.0.3 | 出仓申报放行新增申报报关单数据以及申报的完整商品明细数据 | 赖钻   | 2025-10-13 |
 | 1.0.4 | 返回值申报数据新增成交币值 | 赖钻   | 2025-10-15 |
 | 1.0.5 | 新增商品明细混装功能 <br />更新`jobNo`和`outbdNo`参数说明 | 赖钻   | 2025-11-06 |
+| 1.0.6 | 表头新增总毛重和总净重用于校验商品明细总毛重和净重 <br /> 更新报关明细混装标识标识逻辑，相同`packId`表示一组混装 | 赖钻   | 2025-11-10 |
 
 
 ## 创建出仓申报订单
@@ -53,6 +54,8 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | warehouseCode      | 作业仓库代码 | `Set<String>(1...n)`         | 多仓拼柜的时候填写多个仓库                             |    Y     |
 | expectDate         | 预计出库日期 | String(10)                   | `yyyy-MM-dd`                                           |    Y     |
 | jobNo              | 工作单号     | String(32)                   |          和立航系统交互的唯一单号 <Badge text="1.0.5" />    |    N     |
+| totalGrossWeight | 报关单总毛重       | BigDecimal(10, 4)            |    <Badge text="1.0.6" />                                            |    Y     |
+| totalNetWeight | 报关单总净重       | BigDecimal(10, 4)            |      <Badge text="1.0.6" />                                          |    Y     |
 | trailer            | 是否柜车     | Boolean                      | 柜车填 true，吨车填 false                              |    Y     |
 | containerStatus    | 柜状态       | Byte                         | 固定填写：10                                           |    Y     |
 | containerNo        | 柜号         | String(12)                   | 柜车必填                                               |    O     |
@@ -120,7 +123,7 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 | **字段名称**       | **字段描述**     | **数据类型**      | **详细说明**                                                        | **必填** |
 | ------------------ | ---------------- | ----------------- | ------------------------------------------------------------------- | :------: |
 | id         | 唯一序号             | Long       |     需要保证在这份订单中唯一  <Badge text="1.0.5" />  |    Y     |
-| packId         | 混装标识             | Long       |   <Tip text="1:混装; 0:非混装; 或者填写主项的id">混装主项填写：1 <br/> 非混装填写：0 <br/> 混装子项填写：主项的id</Tip>  <Badge text="1.0.5" />  |    Y     |
+| packId         | 混装标识             | Long       |  一组混装明细填相同的标识   <Badge text="1.0.6" />  |    Y     |
 | goodsExgNo         | 料号             | String(32)        | [入仓申报回执](./inbound-customs.md#commodity-back)中的料号         |    Y     |
 | goodsExgNo         | 料号             | String(32)        | [入仓申报回执](./inbound-customs.md#commodity-back)中的料号         |    Y     |
 | goodsModel         | 入仓申报要素     | String(255)       |                                                                     |    Y     |
