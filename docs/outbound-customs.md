@@ -21,13 +21,9 @@ description: 创建、修改、取消监管仓出仓报关单接口文档，包�
 
 ## 创建出仓申报订单
 
-### 请求路径
-
-`/v1/outbound/customs`
-
 ### 请求方法
 
-`POST`
+`POST`：`/v1/outbound/customs`
 
 ### 请求参数
 

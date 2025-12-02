@@ -39,13 +39,9 @@ end
  Leaderrun->>Customer: Success (http code 200)
 ```
 
-#### 请求路径
-
-`/v1/inbound/booking`
-
 #### 请求方法
 
-`POST`
+`POST`：`/v1/inbound/booking`
 
 #### 请求参数
 

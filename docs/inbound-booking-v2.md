@@ -16,19 +16,60 @@ tag: [{ type: 'tip', text: 'New' }]
 | 1.0.2 | destinationPort 设置为非必填项 | 赖钻   | 2025-07-21 |
 | 1.0.3 | 新增 paymentTerm 字段用来表示入仓费用结算方式  | 赖钻   | 2025-07-21 |
 | 1.0.4 | 新增 purchaseOrder 字段用来标识采购订单明细  | 赖钻   | 2025-09-08 |
+| 1.0.5 | 新增请求创建booking报文样例  | 赖钻   | 2025-12-02 |
 
 
 ## 创建 Booking
 
-客户通过接口的方式在立航系统中创建 Booking 订单
+通过接口方式在立航系统中创建交仓订单
 
-### 请求路径
 
-`/v2/inbound/booking`
+### 请求参数
+
+:::details 点击查看
+
+```json
+{
+  "soNum": "YAX3227147",
+  "goodsName": "Paper box",
+  "warehouseCode": "PLB",
+  "receiverName": "AUTOLIV SAFETY TECHNOLOGY DE MEXIC",
+  "shipperName": "Dongguan Eastern  Rainbow Precision  Metal",
+  "contactPerson": "Judy Shun Hua Zhu",
+  "contactPersonEmail": "test@xx.com",
+  "contactNumber": "+86 755 82000000",
+  "consigneeCode": "xxx",
+  "payerCode": "xxx",
+  "satWhseCode": "CAN",
+  "totalPackages": 80,
+  "packageUnit": "CTN",
+  "totalCartons": null,
+  "totalGrossWeight": 968,
+  "totalVolume": 8.278,
+  "destinationCountry": "ARE",
+  "destinationPort": "AEDXB",
+  "deliveryStartDate": "2025-12-12 00:00",
+  "deliveryCutoffDate": "2025-12-15 00:00",
+  "mark": "按实收",
+  "remark": "Shipment ID: S25SSZ10044952 | Stackability: Yes | Comment(origin): HSWB | 进仓SO前缀: ",
+  "paymentTerm": null,
+  "dgClassification": ["UN3481"],
+  "sensitive": true,
+  "attachments": [
+    {
+      "name": "保函",
+      "url": "https://xxx.xxx.com/xxx.pdf"
+    }],
+  "purchaseOrders": []
+}
+```
+
+:::
+
 
 ### 请求方法
 
-`POST`
+`POST`：`/v2/inbound/booking`
 
 ### 请求参数
 
@@ -56,7 +97,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | deliveryCutoffDate | 交仓截止日期   | String                                    | 提供 Booking 交仓截止日期。格式：yyyy-MM-dd'T'HH:mm:ss                                                                            |    N     |
 | mark               | 唛头           | String(200)                               | 提供唛头信息                                                                                                                      |    Y     |
 | remark             | 备注           | String(200)                               | 提供个别备注                                                                                                                      |    N     |
-| paymentTerm             | 结算方式           | String(2)                               | 入仓费用结算方式                                                                                                                      |    N     |
+| paymentTerm             | 结算方式           | String(2)                               | 入仓费用结算方式。不同客户费用不同，需要双方商定该字段含义                                                                                                                      |    N     |
 | dgClassification   | 危险品编号     | `Set<String>(0...10)`                     |                                                                                                                                   |    N     |
 | sensitive          | 是否敏感货物   | Boolean                                   | 如果为`true`必须上传附件，如保函                                                                                                  |    N     |
 | attachments        | 附件列表       | [`List<Attachment>(0...n)`](#attachement) | 如涉及敏感货物，请提供相应附件                                                                                                    |    N     |
@@ -89,6 +130,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | pieceWeight          | 单重     | Float(10,4)  |          |    Y     |
 | grossWeight          | 毛重     | Float(10,4)  |          |    Y     |
 
+
 ### 返回值
 
 Http 状态码为`200`的时候有以下内容返回
@@ -114,7 +156,7 @@ Http 状态码为`200`的时候有以下内容返回
 | receiptType    | 回执类型     | <Tip text="Enum">BKG: Booking 回执<Br/>CUST：报关回执<Br/>WHSE：仓库收货回执</Tip> |              |    Y     |
 | status         | 状态         |                                                                                    |              |    Y     |
 | statusDateTime | 节点状态时间 | String(20)                                                                         |              |    Y     |
-| data           | 回执数据     | [BKG](#bkg)<br/>[CUST](#cust)<br/>[WHSE](#whse)                                    |              |    Y     |
+| data           | 回执数据     | [BKG](#bgk)<br/>[CUST](#cust)<br/>[WHSE](#whse)                                    |              |    Y     |
 
 #### Booking 回执 {#bgk}
 
@@ -246,7 +288,7 @@ Http 状态码为`200`的时候有以下内容返回
 
 :::
 
-#### 报关回执
+#### 报关回执 {#cust}
 
 ##### 状态
 

@@ -19,13 +19,9 @@ description: 创建、修改、取消入监管仓报关单接口文档，包含�
 
 ## 创建入仓申报订单
 
-### 请求路径
-
-`/v1/inbound/customs`
-
 ### 请求方法
 
-`POST`
+`POST`：`/v1/inbound/customs`
 
 ### 请求参数
 
