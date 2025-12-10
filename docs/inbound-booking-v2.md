@@ -17,6 +17,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | 1.0.3 | 新增 paymentTerm 字段用来表示入仓费用结算方式  | 赖钻   | 2025-07-21 |
 | 1.0.4 | 新增 purchaseOrder 字段用来标识采购订单明细  | 赖钻   | 2025-09-08 |
 | 1.0.5 | 新增请求创建booking报文样例  | 赖钻   | 2025-12-02 |
+| 1.0.6 | 新增[卫星仓收货回执](#satwhse)  | 赖钻   | 2025-12-10 |
 
 
 ## 创建 Booking
@@ -153,10 +154,10 @@ Http 状态码为`200`的时候有以下内容返回
 | **字段名称**   | **字段描述** | **数据类型**                                                                       | **详细说明** | **必填** |
 | -------------- | ------------ | ---------------------------------------------------------------------------------- | ------------ | :------: |
 | soNum          | 装运订单号   | String(32)                                                                         |              |    Y     |
-| receiptType    | 回执类型     | <Tip text="Enum">BKG: Booking 回执<Br/>CUST：报关回执<Br/>WHSE：仓库收货回执</Tip> |              |    Y     |
+| receiptType    | 回执类型     | <Tip text="Enum">BKG: Booking 回执<Br/>CUST：报关回执<Br/>SAT_WHSE：卫星仓(网点)回执<Br/>WHSE：仓库收货回执</Tip> |              |    Y     |
 | status         | 状态         |                                                                                    |              |    Y     |
 | statusDateTime | 节点状态时间 | String(20)                                                                         |              |    Y     |
-| data           | 回执数据     | [BKG](#bgk)<br/>[CUST](#cust)<br/>[WHSE](#whse)                                    |              |    Y     |
+| data           | 回执数据     | [BKG](#bgk)<br/>[CUST](#cust)<br/>[SAT_WHSE](#satwhse)<br/>[WHSE](#whse)                                    |              |    Y     |
 
 #### Booking 回执 {#bgk}
 
@@ -190,6 +191,82 @@ Http 状态码为`200`的时候有以下内容返回
 ```
 
 :::
+
+#### 卫星仓收货回执 {#satwhse}
+
+卫星仓[立航在各城市的网点](./basic-data#sateWarehouseCode)收货后会推送相关状态
+
+##### 状态
+
+| **代码**                   | **描述**                     |
+| -------------------------- | ---------------------------- |
+| unloading_completed        | 卸货完成                     |
+| departure                  | 卫星仓货物出库，发往深圳仓库   |
+
+##### 回执数据
+
+| **字段名称**       | **字段描述** | **数据类型**          | **详细说明**                                                                   | **必填** |
+| ------------------ | ------------ | --------------------- | ------------------------------------------------------------------------------ | :------: |
+| warehouseLotNumber | 仓库作业单号 | String(20)            | 一个作业单号会对应多个 SO Number。SO 分批交仓同一个 SO Number 会有多个作业单号 |    Y     |
+| cargos             | 收货明细     | [List(1…n)](#sat-cargo)   | 状态是`unloading_completed`的时候必填                                                    |    O     |
+
+###### 收货明细 {#sat-cargo}
+
+| **字段名称**  | **字段描述** | **数据类型** | **详细说明**                                          | **必填** |
+| ------------- | ------------ | ------------ | ----------------------------------------------------- | :------: |
+| packagingType | 包装单位     | String(20)   | 仓库实收[包装单位](./basic-data#warehousePackageCode) |    Y     |
+| lengthCm      | 长           | Float(10,2)  | 货物长度                                              |    Y     |
+| widthCm       | 宽           | Float(10,2)  |                                                       |    Y     |
+| heightCm      | 高           | Float(10,2)  |                                                       |    Y     |
+| volumeCbm     | 体积         | Float(10,2)  |                                                       |    Y     |
+| weightKg      | 重量         | Float(10,2)  |                                                       |    Y     |
+| remark        | 收货备注     | String(200)  |                                                       |    N     |
+| marks         | 唛头         | String(200)  |                                                       |    N     |
+| po            | po number    | String(200)  |                                                       |    N     |
+| item          | item number  | String(200)  |                                                       |    N     |
+
+##### 样例
+
+:::details 点击查看
+
+```json
+{
+  "soNum": "ZSNLRHAM22121215",
+  "receiptType": "SAT_WHSE",
+  "status": "unloading_completed",
+  "statusDateTime": "2025-12-04 16:20:39",
+  "data": {
+    "warehouseLotNumber": "ISW251203791952",
+    "cargos": [
+      {
+        "pieces": 60,
+        "remark": "test",
+        "lengthCm": 31,
+        "widthCm": 30,
+        "heightCm": 32,
+        "weightKg": 543,
+        "volumeCbm": 1.79,
+        "packagingType": "CTN",
+        "marks": "TEST"
+      },
+      {
+        "pieces": 1,
+        "remark": "顶部不平整;",
+        "lengthCm": 120,
+        "widthCm": 100,
+        "heightCm": 142,
+        "weightKg": 157,
+        "volumeCbm": 1.7,
+        "packagingType": "Wooden Pallet",
+        "marks": "PO#85010;85713"
+      }
+    ]
+  }
+}
+```
+
+:::
+
 
 #### 仓库收货回执 {#whse}
 

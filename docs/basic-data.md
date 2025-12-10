@@ -51,7 +51,7 @@ description: 立航系统基础信息集合
 
 ### 卫星仓库代码表 {#sateWarehouseCode}
 
-<a href="/openapi/satellite-warehouse.xlsx" download="satellite-warehouse.xlsx">下载Excel数据</a>
+<a href="https://logistics.leaderrun.com/api/download/attachment/satellite-warehouse.xlsx" download="satellite-warehouse.xlsx">下载Excel数据</a>
 
 
 ## 报关相关
