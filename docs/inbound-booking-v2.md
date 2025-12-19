@@ -4,7 +4,6 @@ date: 2025-04-08
 author: 赖钻
 sequence: 11
 description: 进仓单创建、修改、取消接口对接，包含收货回执推送文档。
-tag: [{ type: 'tip', text: 'New' }]
 ---
 
 ## 更新日志
@@ -22,7 +21,7 @@ tag: [{ type: 'tip', text: 'New' }]
 
 ## 创建 Booking
 
-通过接口方式在立航系统中创建交仓订单
+通过接口方式在立航系统中创建交仓订单。
 
 
 ### 请求参数
