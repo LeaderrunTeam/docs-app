@@ -136,7 +136,7 @@ Http 状态码为`200`的时候有以下内容返回
 | approved                    | loadplan审核通过                    |
 | rejected                    | loadplan审核不通过                    |
 | published                    | 下发作业指令                    |
-| conatiner_arrived                    | 空柜到仓                    |
+| container_arrived                    | 空柜到仓                    |
 | load_ready | 准备装柜                     |
 | load_start            | 开始装货                     |
 | loaded        | 装货完成                     |
