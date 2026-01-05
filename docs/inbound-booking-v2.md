@@ -289,7 +289,7 @@ Http 状态码为`200`的时候有以下内容返回
 | ------------------ | ------------ | --------------------- | ------------------------------------------------------------------------------ | :------: |
 | warehouseLotNumber | 仓库作业单号 | String(20)            | 一个作业单号会对应多个 SO Number。SO 分批交仓同一个 SO Number 会有多个作业单号 |    Y     |
 | cargos             | 收货明细     | [List(1…n)](#cargo)   | 状态是`finalized/after_updated`的时候必填                                                    |    O     |
-| attachments        | 收货附件     | [List<1..n>](#recAtt) | 状态是`finalized/after_updated`的时候必填                                                    |    O     |
+| attachments        | 收货附件     | [List<1..n>](#recAtt) | 状态是`finalized/after_updated`的时候必填。`after_updated`只会有`shippingOrder`(收货核实单)，不会有收其它附件                                                   |    O     |
 
 ###### 收货明细 {#cargo}
 
