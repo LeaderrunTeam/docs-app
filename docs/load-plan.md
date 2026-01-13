@@ -13,6 +13,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | :---: | ------------ | ------ | :--------: |
 | 1.0.0 | 新增规范文档 | 赖钻   | 2025-12-19 |
 | 1.0.2 | 报关回执附件新增`CU000002：通关无纸化出口放行通知书`  | 赖钻   | 2025-12-23 |
+| 1.0.3 | `receiverContactNumber`字符长度放宽到50，`receiverAddress`字符串长度放宽到255  | 赖钻   | 2026-01-13 |
 
 ## 创建 Loadplan
 
@@ -70,8 +71,8 @@ tag: [{ type: 'tip', text: 'New' }]
 | ------------------ | -------------- | ---------------------------- | --------------------------------- | :------: |
 | receiverName | 收货人名称        | String(50)         |    |    Y     |
 | receiverContactMode | 收货人联系方法        | String(2)         |  <Tip text="Enum">FX: 传真<Br/>EM：邮件<Br/>TE：电话</Tip> |    Y    |
-| receiverContactNumber | 收货人联系号码        | String(30)         |    |    Y     |
-| receiverAddress | 收货人联系地址       | String(70)         |    |   Y     |
+| receiverContactNumber | 收货人联系号码        | String(50)         |    |    Y     |
+| receiverAddress | 收货人联系地址       | String(255)         |    |   Y     |
 | bookingNo              | 订舱单号     | String(32)                                |   |    Y     |
 | carrier              | 船公司代码     | String(10)                                | [船公司代码表](./basic-data#carrier)  |    Y     |
 | vessel              | 船名     | String(50)                                |   |    Y     |
