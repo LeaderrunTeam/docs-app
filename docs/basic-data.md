@@ -51,8 +51,7 @@ description: 立航系统基础信息集合
 
 ### 卫星仓库代码表 {#sateWarehouseCode}
 
-<a href="https://logistics.leaderrun.com/api/download/attachment/satellite-warehouse.xlsx" download="satellite-warehouse.xlsx">下载Excel数据</a>
-
+<Download url="/attachment/satellite-warehouse.xlsx">下载卫星仓Excel数据</Download>
 
 ### 运输公司 {#transport}
 | **Code** | **Name**   |
@@ -83,8 +82,8 @@ description: 立航系统基础信息集合
 只有陆运可选
 # 车辆规格编码表
 
-| 编码    | 名称    |
 | **Code** | **Name**   |
+| ------ | ------ |
 | 1.5吨  | 1.5吨  |
 | 3吨    | 3吨    |
 | 5吨    | 5吨    |
