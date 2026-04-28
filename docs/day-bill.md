@@ -29,8 +29,8 @@ flowchart LR
     s --> b(创建账单)
     b --> |  | D:::succ@{ shape: dbl-circ, label: "返回<br/>200状态码" }
     u1 --> | | u{合作伙伴<br>账单状态？}
-    u --> | 账单审核中或审核通过，修改失败 | A:::err@{ shape: dbl-circ, label: "返回<br/>400状态码" }
-    u --> | 账单未审核或审核拒绝，修改成功 | D
+    u --> | 账单审核中或审核通过<br>修改失败 | A:::err@{ shape: dbl-circ, label: "返回<br/>400状态码" }
+    u --> | 账单未审核或审核拒绝<br>修改成功 | D
   classDef succ stroke:#389e0d,fill:#fff,color:#389e0d
   classDef err fill:#fff,color:#f00,stroke:#f00
 ```
