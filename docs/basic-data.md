@@ -3,7 +3,7 @@ title: 基础信息
 date: 2024-09-01
 author: 赖钻
 sequence: 2
-description: 立航系统基础信息集合
+description: 立航系统对接API基础信息合集
 ---
 
 ## 仓库相关
@@ -29,6 +29,14 @@ description: 立航系统基础信息集合
 | Nude Parched    | 裸装        |
 | Iron pallet     | 铁卡板      |
 | Flight Case     | 航空箱      |
+| PLASTICS PACKAGE     | 塑料包装      |
+| WOODEN PACKAGE     | 实木包装      |
+| PLYWOOD PACKAGES     | 胶合板包装      |
+| CRATE    | 板条箱      |
+| CASE    | 木箱      |
+| FRAME    | 框架      |
+| Foam Pallet    | 泡沫板      |
+| Slip sheet    | 纸滑托      |
 
 ### 监管仓库代码表 {#warehouseCode }
 

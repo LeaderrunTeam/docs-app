@@ -3,8 +3,7 @@ title: 出库 Loadplan
 date: 2025-12-19
 author: 赖钻
 sequence: 20
-description: 出库loadplan相关文档，包含创建loadplan、装货回执、报关回执、运输回执等
-tag: [{ type: 'tip', text: 'New' }]
+description: 合作伙伴通过当前文档创建出仓计划，立航系统会将出仓计划的装货回执、报关回执、运输回执等回执推送给合作伙伴系统
 ---
 
 ## 更新日志
@@ -24,7 +23,84 @@ tag: [{ type: 'tip', text: 'New' }]
 :::details 点击查看
 
 ```json
-
+{
+  "outbdNo": "",
+  "action": "C",
+  "mode": "clearance",
+  "consigneeCode": "LH-LCL",
+  "payerCode": "Leaderrun",
+  "expectedDate": "2026-04-29",
+  "returnPort": "CNYTN",
+  "contactPerson": "OP7.SZ@qq.com",
+  "jobNo": "job-0001",
+  "loadingRemark": "请密装，托盘摆好点，小心装柜拍照",
+  "vehicleSize": "40HQ",
+  "items": [
+    {
+      "soNum": "C6053363",
+      "loadingRemark": "勿重压 小心装卸谢谢 "
+    },
+    {
+      "soNum": "N6055098",
+      "loadingRemark": ""
+    },
+    {
+      "soNum": "N6054502",
+      "loadingRemark": ""
+    },
+    {
+      "soNum": "N6054196",
+      "loadingRemark": ""
+    },
+    {
+      "soNum": "N6052369",
+      "loadingRemark": ""
+    },
+    {
+      "soNum": "N6054200",
+      "loadingRemark": ""
+    },
+    {
+      "soNum": "N6051445JM",
+      "loadingRemark": "请勿叠重货"
+    },
+    {
+      "soNum": "N6054204",
+      "loadingRemark": ""
+    },
+    {
+      "soNum": "N6054919",
+      "loadingRemark": ""
+    },
+    {
+      "soNum": "N6053144XL",
+      "loadingRemark": ""
+    },
+    {
+      "soNum": "N6054731",
+      "loadingRemark": ""
+    },
+    {
+      "soNum": "N6054027",
+      "loadingRemark": ""
+    }
+  ],
+  "attachments": [],
+  "transportCompany": "LH",
+  "transportWeigh": false,
+  "destinationCountry": "USA",
+  "receiverName": "DHL",
+  "receiverContactMode": "TE",
+  "receiverContactNumber": "21 321 12345",
+  "receiverAddress": "10 xxx xxx NORD\r\n10/F GLOBAL BUSINESS PARK, O2\r\nVOLUNTARI, ILFOV 077190\r\nROMANIA\r\nEORI",
+  "bookingNo": "269357770",
+  "carrier": "",
+  "vessel": "MAERSK HALIFAX",
+  "voyage": "618W",
+  "si": "2026-04-29 12:00:00",
+  "cy": "2026-05-01 17:00:00",
+  "cv": "2026-05-01 17:00:00"
+}
 ```
 
 :::
@@ -53,7 +129,7 @@ tag: [{ type: 'tip', text: 'New' }]
 | loadingRemark         | 装柜备注        | String(255)                                |      |    N   |
 | vehicleSize         | 车辆尺寸        | String(4)                                |   [可选项](./basic-data#vehSize)   |    Y   |
 | items         | 出库明细        | [List(1...n)](#items)                                |    |    Y   |
-| attachments   | 附件列表       |  [List(0...n)](#attachement)   |    N     |
+| attachments   | 附件列表       |  [List(0...n)](#attachement)   |        | N |
 
 #### 清关出库参数
 
