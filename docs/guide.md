@@ -84,7 +84,7 @@ Example:
   "requestId": "8c606389-58b4-4d43-9a86-5a58592b46b2",
   "errors": {
     "success": false,
-    "danger": false,
+    "danger": true,
     "errors": [
       {
         "field": "commodityList[1].grossWeight",
